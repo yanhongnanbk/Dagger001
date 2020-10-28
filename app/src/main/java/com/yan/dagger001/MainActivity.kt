@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.yan.dagger001.dagger2.CarComponent
 import com.yan.dagger001.dagger2.DaggerCarComponent
+import com.yan.dagger001.dagger2.DieselEngineModule
 import com.yan.dagger001.models.Car
 import com.yan.dagger001.models.Engine
 import com.yan.dagger001.models.Wheels
@@ -24,10 +25,11 @@ class MainActivity : AppCompatActivity() {
 //
 //        car = Car(engine, wheels)
 //        car = DaggerCarComponent.create().getCar()
-        var carComponent = DaggerCarComponent.create()
+        var carComponent = DaggerCarComponent.builder()
+            .dieselEngineModule(DieselEngineModule(100))
+            .build()
         carComponent.inject(this)
         car.drive()
-
 
     }
 }

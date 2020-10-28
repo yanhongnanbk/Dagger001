@@ -8,8 +8,16 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract class DieselEngineModule {
+class DieselEngineModule {
+    var horsePower:Int
 
-    @Binds
-    abstract fun bindEngine(engine: DieselEngine): Engine
+    constructor(horsePower: Int) {
+        this.horsePower = horsePower
+    }
+
+
+    @Provides
+    fun provideEngine(): Engine{
+        return DieselEngine(horsePower)
+    }
 }
